@@ -1,0 +1,39 @@
+﻿<Window x:Class="Рисовалка.Reg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Рисовалка"
+        mc:Ignorable="d"
+        Title="Обучение рисованию" Height="450" Width="800" MinHeight="450" MinWidth="800" MaxHeight="450" MaxWidth="800" Icon="Resources/DRAWell.ico" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel VerticalAlignment="Center">
+            <Image Source="/Resources/DRAWell.png" Height="113" Width="143" HorizontalAlignment="Right"/>
+        </WrapPanel>
+        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="1">
+            <Label Content="Регистрация" FontSize="24" FontWeight="Bold"/>
+        </WrapPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" >
+            <Label Content="Логин:" Style="{StaticResource Label}"></Label>
+            <TextBox x:Name="Login"></TextBox>
+            <Label Content="Пароль:" Style="{StaticResource Label}"></Label>
+            <TextBox x:Name="Password"></TextBox>
+            <Label Content="Имя:" Style="{StaticResource Label}"></Label>
+            <TextBox x:Name="Name"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Button x:Name="LogIn" Style="{StaticResource Reg}" Click="LogIn_Click" Content="Зарегистрироваться" Background="#FF9F9E9E"  Margin="0,20,0,0" ></Button>
+            <Button x:Name="Back" Style="{StaticResource Reg}" Click="Back_Click" Content="Назад" Margin="0,20,0,0"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
