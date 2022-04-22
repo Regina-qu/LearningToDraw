@@ -19,7 +19,6 @@
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
             <Image Source="/Resources/DRAWell.png" Height="113" Width="143" />
-            <!--<Label Content="Обучение рисованию" FontSize="24" FontWeight="Bold"/>-->
         </StackPanel>
         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
             

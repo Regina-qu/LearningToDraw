@@ -11,8 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Рисовалка.Windows;
 
-namespace Рисовалка
+namespace Рисовалка.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Home.xaml

@@ -26,9 +26,9 @@ namespace Рисовалка
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Home home = new Home();
-            home.Show();
-            Hide();
+            //Home home = new Home();
+            //home.Show();
+            //Hide();
         }
     }
 }

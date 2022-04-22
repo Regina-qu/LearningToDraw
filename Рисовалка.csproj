@@ -59,7 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Cat.xaml.cs">
+    <Compile Include="Windows\Cat.xaml.cs">
       <DependentUpon>Cat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gallery.xaml.cs">
@@ -96,17 +96,17 @@
     <Compile Include="Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cherry.xaml.cs">
+    <Compile Include="Windows\Cherry.xaml.cs">
       <DependentUpon>Cherry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Reg.xaml.cs">
+    <Compile Include="Windows\Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
     </Compile>
     <Page Include="Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Cat.xaml">
+    <Page Include="Windows\Cat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,11 +114,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Home.xaml">
+    <Page Include="Windows\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Octopus.xaml">
+    <Page Include="Windows\Octopus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -126,10 +126,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Home.xaml.cs">
+    <Compile Include="Windows\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Octopus.xaml.cs">
+    <Compile Include="Windows\Octopus.xaml.cs">
       <DependentUpon>Octopus.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -137,11 +137,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Cherry.xaml">
+    <Page Include="Windows\Cherry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Reg.xaml">
+    <Page Include="Windows\Reg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,8 +235,6 @@
     <Resource Include="Resources\Cat\Cat7.png" />
     <Resource Include="Resources\gallery.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

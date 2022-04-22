@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,19 +9,24 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Рисовалка
+
+namespace Рисовалка.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Cat.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class Cat : Window
+    public partial class Octopus : Window
     {
-        public Cat()
+        DRAWellEntities db = new DRAWellEntities();
+        Users users = new Users();
+        public Octopus()
         {
             InitializeComponent();
             InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
@@ -31,13 +37,11 @@ namespace Рисовалка
         }
 
         string[] imgs = new string[] {
-            "/Resources/Cat/Cat1.png",
-            "/Resources/Cat/Cat2.png",
-            "/Resources/Cat/Cat3.png",
-            "/Resources/Cat/Cat4.png",
-            "/Resources/Cat/Cat5.png",
-            "/Resources/Cat/Cat6.png",
-            "/Resources/Cat/Cat7.png"};
+            "/Resources/Octopus/Octopus1.png",
+            "/Resources/Octopus/Octopus2.png",
+            "/Resources/Octopus/Octopus3.png",
+            "/Resources/Octopus/Octopus4.png",
+            "/Resources/Octopus/Octopus5.png"};
         private int selected = 0;
 
         private void showImage(string img, int i)
@@ -94,7 +98,7 @@ namespace Рисовалка
             dlg.Filter = "Image (.jpg)|*.jpg";
             dlg.ShowDialog();
             var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
-
+            
             InkCanvas.Measure(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight));
             InkCanvas.Arrange(new Rect(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight)));
             rtb.Render(InkCanvas);
@@ -106,6 +110,16 @@ namespace Рисовалка
                 BufferSave.Save(fs);
             }
             InkCanvas.Background = null;
+
+
+
+            //foreach (var user in db.Users)
+            //{
+            //    if (user.Login == Global.log)
+            //    {
+                    
+            //    }
+            //}
         }
 
         private void Size_MouseLeave(object sender, MouseEventArgs e)
