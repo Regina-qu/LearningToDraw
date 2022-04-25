@@ -16,53 +16,33 @@ using System.Windows.Shapes;
 namespace Рисовалка.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Drawing.xaml
+    /// Логика взаимодействия для WithoutLearning.xaml
     /// </summary>
-    public partial class Drawing : Window
+    public partial class WithoutLearning : Window
     {
         DRAWellEntities db = new DRAWellEntities();
         Users users = new Users();
         private string[] imgs;
-        int selected;
 
-        public Drawing()
+        public WithoutLearning()
         {
             InitializeComponent();
             if (Global.ImageNumber == 0)
             {
-                imgs = new string[] {
-            "/Resources/Octopus/Octopus1.png",
-            "/Resources/Octopus/Octopus2.png",
-            "/Resources/Octopus/Octopus3.png",
-            "/Resources/Octopus/Octopus4.png",
-            "/Resources/Octopus/Octopus5.png"};
+                imgs = new string[] {"/Resources/Octopus/Octopus5.png"};
             }
             else if (Global.ImageNumber == 1)
             {
-                imgs = new string[] {
-            "/Resources/Cherry/Cherry1.png",
-            "/Resources/Cherry/Cherry2.png",
-            "/Resources/Cherry/Cherry3.png",
-            "/Resources/Cherry/Cherry4.png",
-            "/Resources/Cherry/Cherry5.png"};
+                imgs = new string[] {"/Resources/Cherry/Cherry5.png"};
             }
             else if (Global.ImageNumber == 2)
             {
-                imgs = new string[] {
-            "/Resources/Cat/Cat1.png",
-            "/Resources/Cat/Cat2.png",
-            "/Resources/Cat/Cat3.png",
-            "/Resources/Cat/Cat4.png",
-            "/Resources/Cat/Cat5.png",
-            "/Resources/Cat/Cat6.png",
-            "/Resources/Cat/Cat7.png"};
+                imgs = new string[] {"/Resources/Cat/Cat7.png"};
             }
-            selected = 0;
             InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
             InkCanvas.DefaultDrawingAttributes.Height = 8;
             InkCanvas.DefaultDrawingAttributes.Width = 8;
             showImage(imgs[0], 0);
-            Number.Content = (selected + 1) + "/" + (imgs.Length);
         }
 
         private void showImage(string img, int i)
@@ -73,41 +53,6 @@ namespace Рисовалка.Windows
             b1.EndInit();
             Image.Stretch = Stretch.Fill;
             Image.Source = b1;
-        }
-
-        private void Previous_Click(object sender, RoutedEventArgs e)
-        {
-            if (selected - 1 < 0)
-            {
-                return;
-            }
-            else if (selected == 0)
-            {
-                selected = imgs.Length - 1;
-                showImage(imgs[selected], selected);
-            }
-            else
-            {
-                selected = selected - 1;
-                showImage(imgs[selected], selected);
-            }
-            Number.Content = (selected + 1) + "/" + (imgs.Length);
-        }
-
-        private void Next_Click(object sender, RoutedEventArgs e)
-        {
-            if (selected + 1 == imgs.Length)
-            {
-                return;
-            }
-            selected = selected + 1;
-            showImage(imgs[selected], selected);
-            Number.Content = (selected + 1) + "/" + (imgs.Length);
-
-            if(selected == imgs.Length - 1)
-            {
-                WithoutLearn.Visibility = Visibility.Visible;
-            }
         }
 
         private void Clean_Click(object sender, RoutedEventArgs e)
@@ -197,10 +142,10 @@ namespace Рисовалка.Windows
             InkCanvas.EditingMode = InkCanvasEditingMode.EraseByPoint;
         }
 
-        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            WithoutLearning withoutLearning = new WithoutLearning();
-            withoutLearning.Show();
+            Drawing drawing = new Drawing();
+            drawing.Show();
             Hide();
         }
     }
