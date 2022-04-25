@@ -9,7 +9,7 @@ namespace Рисовалка
     class Global
     {
         public static string log = "";
-        public static string selecred = "";
+        public static int ImageNumber = 0;
         public static int idRealty = -1;
     }
 }

@@ -20,7 +20,7 @@ namespace Рисовалка.Windows
     /// </summary>
     public partial class Home : Window
     {
-        private DRAWellEntities _context;
+        //private DRAWellEntities _context;
 
         public Home()
         {
@@ -74,24 +74,10 @@ namespace Рисовалка.Windows
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (selected == 0)
-            {
-                Octopus octopus = new Octopus();
-                octopus.Show();
-                Hide();
-            }
-            else if (selected == 1)
-            {
-                Cherry cherry = new Cherry();
-                cherry.Show();
-                Hide();
-            }
-            else if (selected == 2)
-            {
-                Cat cat = new Cat();
-                cat.Show();
-                Hide();
-            }
+            Global.ImageNumber = selected;
+            Drawing drawing = new Drawing();
+            drawing.Show();
+            Hide();
         }
 
         //private void Gallery_Click(object sender, RoutedEventArgs e)

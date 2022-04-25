@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,40 +8,62 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 
 namespace Рисовалка.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Drawing.xaml
     /// </summary>
-    public partial class Octopus : Window
+    public partial class Drawing : Window
     {
         DRAWellEntities db = new DRAWellEntities();
         Users users = new Users();
-        public Octopus()
+        private string[] imgs;
+        int selected;
+
+        public Drawing()
         {
             InitializeComponent();
+            if (Global.ImageNumber == 0)
+            {
+                imgs = new string[] {
+            "/Resources/Octopus/Octopus1.png",
+            "/Resources/Octopus/Octopus2.png",
+            "/Resources/Octopus/Octopus3.png",
+            "/Resources/Octopus/Octopus4.png",
+            "/Resources/Octopus/Octopus5.png"};
+            }
+            else if (Global.ImageNumber == 1)
+            {
+                imgs = new string[] {
+            "/Resources/Cherry/Cherry1.png",
+            "/Resources/Cherry/Cherry2.png",
+            "/Resources/Cherry/Cherry3.png",
+            "/Resources/Cherry/Cherry4.png",
+            "/Resources/Cherry/Cherry5.png"};
+            }
+            else if (Global.ImageNumber == 2)
+            {
+                imgs = new string[] {
+            "/Resources/Cat/Cat1.png",
+            "/Resources/Cat/Cat2.png",
+            "/Resources/Cat/Cat3.png",
+            "/Resources/Cat/Cat4.png",
+            "/Resources/Cat/Cat5.png",
+            "/Resources/Cat/Cat6.png",
+            "/Resources/Cat/Cat7.png"};
+            }
+            selected = 0;
             InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
             InkCanvas.DefaultDrawingAttributes.Height = 8;
             InkCanvas.DefaultDrawingAttributes.Width = 8;
             showImage(imgs[0], 0);
             Number.Content = (selected + 1) + "/" + (imgs.Length);
         }
-
-        string[] imgs = new string[] {
-            "/Resources/Octopus/Octopus1.png",
-            "/Resources/Octopus/Octopus2.png",
-            "/Resources/Octopus/Octopus3.png",
-            "/Resources/Octopus/Octopus4.png",
-            "/Resources/Octopus/Octopus5.png"};
-        private int selected = 0;
 
         private void showImage(string img, int i)
         {
@@ -98,7 +119,7 @@ namespace Рисовалка.Windows
             dlg.Filter = "Image (.jpg)|*.jpg";
             dlg.ShowDialog();
             var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
-            
+
             InkCanvas.Measure(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight));
             InkCanvas.Arrange(new Rect(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight)));
             rtb.Render(InkCanvas);
@@ -117,7 +138,7 @@ namespace Рисовалка.Windows
             //{
             //    if (user.Login == Global.log)
             //    {
-                    
+
             //    }
             //}
         }
