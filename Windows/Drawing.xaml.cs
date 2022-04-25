@@ -57,6 +57,42 @@ namespace Рисовалка.Windows
             "/Resources/Cat/Cat6.png",
             "/Resources/Cat/Cat7.png"};
             }
+            else if (Global.ImageNumber == 3)
+            {
+                imgs = new string[] {
+            "/Resources/Snail/Snail1.png",
+            "/Resources/Snail/Snail2.png",
+            "/Resources/Snail/Snail3.png",
+            "/Resources/Snail/Snail4.png"};
+            }
+            else if (Global.ImageNumber == 4)
+            {
+                imgs = new string[] {
+            "/Resources/Bear/Bear1.png",
+            "/Resources/Bear/Bear2.png",
+            "/Resources/Bear/Bear3.png",
+            "/Resources/Bear/Bear4.png",
+            "/Resources/Bear/Bear5.png"};
+            }
+            else if (Global.ImageNumber == 5)
+            {
+                imgs = new string[] {
+            "/Resources/Rabbit/Rabbit1.png",
+            "/Resources/Rabbit/Rabbit2.png",
+            "/Resources/Rabbit/Rabbit3.png",
+            "/Resources/Rabbit/Rabbit4.png",
+            "/Resources/Rabbit/Rabbit5.png"};
+            }
+            else if (Global.ImageNumber == 6)
+            {
+                imgs = new string[] {
+            "/Resources/Turtle/Turtle1.png",
+            "/Resources/Turtle/Turtle2.png",
+            "/Resources/Turtle/Turtle3.png",
+            "/Resources/Turtle/Turtle4.png",
+            "/Resources/Turtle/Turtle5.png"};
+            }
+
             selected = 0;
             InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
             InkCanvas.DefaultDrawingAttributes.Height = 8;

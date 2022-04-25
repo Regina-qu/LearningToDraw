@@ -31,7 +31,11 @@ namespace Рисовалка.Windows
         string[] imgs = new string[] {
             "/Resources/Octopus/Octopus5.png",
             "/Resources/Cherry/Cherry5.png",
-            "/Resources/Cat/Cat7.png"};
+            "/Resources/Cat/Cat7.png",
+            "/Resources/Snail/Snail4.png",
+            "/Resources/Bear/Bear5.png",
+            "/Resources/Rabbit/Rabbit5.png",
+            "/Resources/Turtle/Turtle5.png"};
         private int selected = 0;
 
         private void showImage(string img, int i)

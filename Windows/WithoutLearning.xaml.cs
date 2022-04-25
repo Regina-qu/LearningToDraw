@@ -39,6 +39,22 @@ namespace Рисовалка.Windows
             {
                 imgs = new string[] {"/Resources/Cat/Cat7.png"};
             }
+            else if (Global.ImageNumber == 3)
+            {
+                imgs = new string[] { "/Resources/Snail/Snail4.png" };
+            }
+            else if (Global.ImageNumber == 4)
+            {
+                imgs = new string[] { "/Resources/Bear/Bear5.png" };
+            }
+            else if (Global.ImageNumber == 5)
+            {
+                imgs = new string[] { "/Resources/Rabbit/Rabbit5.png" };
+            }
+            else if (Global.ImageNumber == 6)
+            {
+                imgs = new string[] { "/Resources/Turtle/Turtle5.png" };
+            }
             InkCanvas.EditingMode = InkCanvasEditingMode.Ink;
             InkCanvas.DefaultDrawingAttributes.Height = 8;
             InkCanvas.DefaultDrawingAttributes.Width = 8;

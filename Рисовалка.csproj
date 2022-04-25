@@ -218,6 +218,25 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Bear\Bear1.png" />
+    <Resource Include="Resources\Bear\Bear2.png" />
+    <Resource Include="Resources\Bear\Bear3.png" />
+    <Resource Include="Resources\Bear\Bear4.png" />
+    <Resource Include="Resources\Bear\Bear5.png" />
+    <Resource Include="Resources\Turtle\Turtle4.png" />
+    <Resource Include="Resources\Turtle\Turtle5.png" />
+    <Resource Include="Resources\Turtle\Turtle1.png" />
+    <Resource Include="Resources\Turtle\Turtle2.png" />
+    <Resource Include="Resources\Turtle\Turtle3.png" />
+    <Resource Include="Resources\Rabbit\Rabbit1.png" />
+    <Resource Include="Resources\Rabbit\Rabbit2.png" />
+    <Resource Include="Resources\Rabbit\Rabbit3.png" />
+    <Resource Include="Resources\Rabbit\Rabbit4.png" />
+    <Resource Include="Resources\Rabbit\Rabbit5.png" />
+    <Resource Include="Resources\Snail\Snail1.png" />
+    <Resource Include="Resources\Snail\Snail2.png" />
+    <Resource Include="Resources\Snail\Snail3.png" />
+    <Resource Include="Resources\Snail\Snail4.png" />
     <Resource Include="Resources\Cat\Cat1.png" />
     <Resource Include="Resources\Cat\Cat2.png" />
     <Resource Include="Resources\Cat\Cat3.png" />
