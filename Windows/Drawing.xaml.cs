@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace Рисовалка.Windows
 {
     /// <summary>
@@ -239,5 +240,75 @@ namespace Рисовалка.Windows
             withoutLearning.Show();
             Hide();
         }
+
+        //UserImage userImage;
+        //private void Sending_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+        //    dlg.InitialDirectory = "c:\\";
+        //    dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
+        //    dlg.RestoreDirectory = true;
+
+        //    string appPath = Directory.GetCurrentDirectory();
+        //    string imageFolder = Directory.GetParent(appPath).Parent.FullName + "\\Images\\";
+        //    if (Directory.Exists(imageFolder) == false)
+        //    {
+        //        Directory.CreateDirectory(imageFolder);
+        //    }
+        //    Nullable<bool> result = dlg.ShowDialog();
+        //    if (result == true)
+        //    {
+        //        string selectedFileName = dlg.FileName;
+        //        string[] iName = dlg.SafeFileName.Split('.');
+        //        string extension = GetExtension(selectedFileName);
+        //        if (IsImageExtension(extension))
+        //        {
+        //            string newPath = imageFolder + iName[0];
+        //            CropImage(selectedFileName, newPath);
+        //            userImage.Path = newPath + "." + iName[1];
+        //            userImage.Data = ImageService.LoadImage(newPath + "." + iName[1]);
+        //            using (var context = new DRAWellEntities())
+        //            {
+        //                try
+        //                {
+        //                    var dbImages = context.UserImage.Where(i => i.UserId == user.Id);
+        //                    foreach (var image in dbImages)
+        //                    {
+        //                        images.Add(new ImageModel
+        //                        {
+        //                            Id = image.Id,
+        //                            Created = image.Created,
+        //                            Description = image.Description,
+        //                            Path = image.Path,
+        //                            Title = image.Title,
+        //                            UserId = image.UserId,
+        //                            Data = LoadImage(image.Path),
+        //                        });
+        //                    }
+        //                }
+        //                catch (Exception e)
+        //                {
+        //                    Trace.WriteLine(e.Message);
+        //                }
+
+        //                return images;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private string GetExtension(string path)
+        //{
+        //    return path.Split('.').Last();
+        //}
+        //private bool IsImageExtension(string ext)
+        //{
+        //    string[] _validExtensions = { "jpg", "bmp", "gif", "png" };
+        //    return _validExtensions.Contains(ext.ToLower());
+        //}
+        //private void CropImage(string source, string dest)
+        //{
+        //    ImageBuilder.Current.Build(new ImageJob(source, dest, new Instructions("width=274;height=143;format=jpg;"), false, true));
+        //}
     }
 }

@@ -32,6 +32,24 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Created" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -53,14 +71,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserImage_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище DRAWellModelContainer">
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageType" EntityType="Self.ImageType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserImage" EntityType="Self.UserImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Images_ImageType" Association="Self.FK_Images_ImageType">
             <End Role="ImageType" EntitySet="ImageType" />
             <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImage_Users" Association="Self.FK_UserImage_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserImage" EntitySet="UserImage" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -97,6 +133,25 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserImage_Users" FromRole="UserImage" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -105,6 +160,7 @@
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Pass" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserImage" Relationship="Self.FK_UserImage_Users" FromRole="Users" ToRole="UserImage" />
         </EntityType>
         <Association Name="FK_Images_ImageType">
           <End Role="ImageType" Type="Self.ImageType" Multiplicity="1" />
@@ -118,14 +174,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserImage_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserImage" Type="Self.UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DRAWellEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Images" EntityType="Self.Images" />
           <EntitySet Name="ImageType" EntityType="Self.ImageType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="UserImage" EntityType="Self.UserImage" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Images_ImageType" Association="Self.FK_Images_ImageType">
             <End Role="ImageType" EntitySet="ImageType" />
             <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImage_Users" Association="Self.FK_UserImage_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserImage" EntitySet="UserImage" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -161,6 +235,26 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="DRAWellModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserImage">
+            <EntityTypeMapping TypeName="DRAWellModel.UserImage">
+              <MappingFragment StoreEntitySet="UserImage">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -87,10 +87,16 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Teacher.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserImage.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Auth.xaml.cs">
+    <Compile Include="Windows\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Drawing.xaml.cs">
@@ -99,10 +105,13 @@
     <Compile Include="Windows\Reg.xaml.cs">
       <DependentUpon>Reg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Teacher.xaml.cs">
+      <DependentUpon>Teacher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WithoutLearning.xaml.cs">
       <DependentUpon>WithoutLearning.xaml</DependentUpon>
     </Compile>
-    <Page Include="Auth.xaml">
+    <Page Include="Windows\Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Reg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Teacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,16 +221,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\Bear\Bear1.png" />
     <Resource Include="Resources\Bear\Bear2.png" />
     <Resource Include="Resources\Bear\Bear3.png" />
@@ -246,6 +249,17 @@
     <Resource Include="Resources\Cat\Cat7.png" />
     <Resource Include="Resources\gallery.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

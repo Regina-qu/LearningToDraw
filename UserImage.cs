@@ -12,20 +12,14 @@ namespace Рисовалка
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class UserImage
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
-        {
-            this.UserImage = new HashSet<UserImage>();
-        }
-    
         public int ID { get; set; }
-        public string Name { get; set; }
-        public string Pass { get; set; }
-        public string Login { get; set; }
+        public int UserID { get; set; }
+        public string Title { get; set; }
+        public string Path { get; set; }
+        public string Created { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserImage> UserImage { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace Рисовалка
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<ImageType> ImageType { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Teacher> Teacher { get; set; }
+        public virtual DbSet<UserImage> UserImage { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }
