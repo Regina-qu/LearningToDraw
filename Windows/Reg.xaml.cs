@@ -40,7 +40,7 @@ namespace Рисовалка.Windows
                 {
                     _context.Users.Add(new Users { Login = Login.Text, Pass = Password.Text, Name = Name.Text });
                     _context.SaveChanges();
-                    //Global.log = Login.Text;
+                    Global.log = Login.Text;
                     MessageBox.Show("Вы зарегистрированы");
                     Home home = new Home();
                     home.Show();

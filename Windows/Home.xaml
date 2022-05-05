@@ -19,8 +19,13 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WrapPanel Grid.ColumnSpan="2">
-            <Image Source="/Resources/DRAWell.png" />
+            <Image Source="/Resources/DRAWell.png"/>
         </WrapPanel>
+        <WrapPanel Grid.Column="2">
+            <Button x:Name="Gallery" Click="Gallery_Click" ToolTip="Мои работы" Height="80" Width="80" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Image Source="/Resources/gallery.png"/>
+            </Button>
+            </WrapPanel>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
             <Button x:Name="Previous"  Click="Previous_Click" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
                 <Path Fill="#FF325E69" Stretch="Fill"  Height="24" Grid.Row="1" Data="M640,160 L559.5,239.5 719.5,239.5 z" Width="32.5"  RenderTransformOrigin="0.5,0.5">

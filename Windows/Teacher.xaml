@@ -11,15 +11,52 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="7*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <WrapPanel Grid.ColumnSpan="2">
             <Image Source="/Resources/DRAWell.png" />
         </WrapPanel>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <ListBox Name="DrawList" Width="420" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray"  BorderThickness="2">
+                                <ListBoxItem Width="400">
+                                    <Grid Width="400" Background="White">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"></RowDefinition>
+                                            <RowDefinition Height="1*"></RowDefinition>
+                                            <RowDefinition Height="1*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel HorizontalAlignment="Center" >
+                                            <Image Source="{Binding Path}" Height="280"></Image>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Users.Name}" Style="{StaticResource TBTeach}"></TextBlock>
+                                                <TextBlock Text="|" Style="{StaticResource TBTeach}"></TextBlock>
+                                                <TextBlock Text="{Binding Created, StringFormat=\{0:dd.MM.yy\}}" Style="{StaticResource TBTeach}"></TextBlock>
+                                            </StackPanel>
+                                            <WrapPanel HorizontalAlignment="Center">
+                                                <TextBlock Text="Оценка:" Style="{StaticResource TBTeach}"></TextBlock>
+                                                <TextBox x:Name="Mark" Style="{StaticResource TBoxTeach}"></TextBox>
+                                            </WrapPanel>
+                                            <StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
+                                                <Button Content="Сохранить" Style="{StaticResource Teach}"></Button>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </ListBoxItem>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

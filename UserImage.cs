@@ -18,7 +18,9 @@ namespace Рисовалка
         public int UserID { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
-        public string Created { get; set; }
+        public System.DateTime Created { get; set; }
+        public string Status { get; set; }
+        public Nullable<int> Mark { get; set; }
     
         public virtual Users Users { get; set; }
     }

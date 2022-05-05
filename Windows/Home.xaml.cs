@@ -84,12 +84,12 @@ namespace Рисовалка.Windows
             Hide();
         }
 
-        //private void Gallery_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Gallery gallery = new Gallery();
-        //    gallery.Show();
-        //    Hide();
-        //}
+        private void Gallery_Click(object sender, RoutedEventArgs e)
+        {
+            Gallery gallery = new Gallery();
+            gallery.Show();
+            Hide();
+        }
 
         //private void Login_Loaded(object sender, RoutedEventArgs e)
         //{

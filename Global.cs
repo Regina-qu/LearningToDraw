@@ -10,6 +10,6 @@ namespace Рисовалка
     {
         public static string log = "";
         public static int ImageNumber = 0;
-        public static int idRealty = -1;
+        public static int id = -1;
     }
 }

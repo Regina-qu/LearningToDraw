@@ -59,10 +59,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Gallery.xaml.cs">
-      <DependentUpon>Gallery.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Global.cs" />
     <Compile Include="Images.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -96,6 +92,10 @@
     <Compile Include="Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Gallery.xaml.cs">
+      <DependentUpon>Gallery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="Windows\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Gallery.xaml">
+    <Page Include="Windows\Gallery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -48,7 +48,9 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Path" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Created" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Created" Type="date" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mark" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -149,7 +151,9 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Created" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mark" Type="Int32" />
           <NavigationProperty Name="Users" Relationship="Self.FK_UserImage_Users" FromRole="UserImage" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
@@ -255,6 +259,8 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

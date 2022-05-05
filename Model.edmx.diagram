@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3713aba420ec44698019eee644e68102" Name="Diagram1">
+      <Diagram DiagramId="7d9e265463ea4f47991036483ad333ef" Name="Diagram1">
         <EntityTypeShape EntityType="DRAWellModel.Images" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DRAWellModel.ImageType" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DRAWellModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DRAWellModel.Teacher" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DRAWellModel.UserImage" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DRAWellModel.Users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DRAWellModel.UserImage" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DRAWellModel.Users" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="DRAWellModel.FK_Images_ImageType" ManuallyRouted="false" />
         <AssociationConnector Association="DRAWellModel.FK_UserImage_Users" ManuallyRouted="false" />
       </Diagram>

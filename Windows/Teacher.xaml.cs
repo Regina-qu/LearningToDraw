@@ -19,9 +19,16 @@ namespace Рисовалка.Windows
     /// </summary>
     public partial class Teacher : Window
     {
+        DRAWellEntities _context = new DRAWellEntities();
         public Teacher()
         {
             InitializeComponent();
+            DrawList.ItemsSource = _context.UserImage.ToList();
+        }
+
+        private void Mark_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

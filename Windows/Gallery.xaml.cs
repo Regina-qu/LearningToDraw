@@ -12,23 +12,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Рисовалка
+namespace Рисовалка.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Gallery.xaml
     /// </summary>
     public partial class Gallery : Window
     {
+        DRAWellEntities _context = new DRAWellEntities();
         public Gallery()
         {
             InitializeComponent();
+            foreach (var user in _context.Users)
+            {
+                if (user.Login == Global.log)
+                {
+                    DrawList.ItemsSource = _context.UserImage.Where(b => b.UserID == user.ID).ToList();
+                }
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            //Home home = new Home();
-            //home.Show();
-            //Hide();
+            Home home = new Home();
+            home.Show();
+            Hide();
         }
     }
 }
