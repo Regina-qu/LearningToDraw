@@ -32,16 +32,16 @@
         <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Name="DrawList" Margin="10" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Gray"  BorderThickness="2">
-                        <ListViewItem>
+                        <ListViewItem Width="450" >
                             <Grid Background="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                                 <StackPanel HorizontalAlignment="Center">
-                                    <Image Source="{Binding Path}" Height="280"></Image>
+                                    <Image Source="{Binding Path}"></Image>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <TextBlock Text="{Binding Title}" ></TextBlock>
                                         <TextBlock Text=" | " ></TextBlock>

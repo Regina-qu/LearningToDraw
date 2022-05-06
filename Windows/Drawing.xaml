@@ -79,8 +79,10 @@
             <Label x:Name="Number" FontSize="16"></Label>
         </WrapPanel>
         <WrapPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center">
-            <!--<Button x:Name="Sending" Height="50" Width="50" Click="Sending_Click" ></Button>-->
-            <Button x:Name="Save"  ToolTip="Сохранить шедевр" Click="Save_Click" Height="50"  Width="50"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="15,0,0,0">
+            <!--<Button x:Name="Sending" Click="Sending_Click" ToolTip="Отправить на проверку" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Image Source="/Resources/send.png" />
+            </Button>-->
+            <Button x:Name="Save" ToolTip="Сохранить шедевр" Click="Save_Click" Height="50"  Width="50"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="15,0,0,0">
                 <Path Stretch="Fill"
                   Data="{StaticResource SaveButtonIcon}"
                   Fill="{StaticResource GrayIcon}"

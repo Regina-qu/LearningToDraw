@@ -44,10 +44,10 @@
                                             </StackPanel>
                                             <WrapPanel HorizontalAlignment="Center">
                                                 <TextBlock Text="Оценка:" Style="{StaticResource TBTeach}"></TextBlock>
-                                                <TextBox x:Name="Mark" Style="{StaticResource TBoxTeach}"></TextBox>
+                                                <TextBox Text="{Binding Mark}" Style="{StaticResource TBoxTeach}"></TextBox>
                                             </WrapPanel>
                                             <StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
-                                                <Button Content="Сохранить" Style="{StaticResource Teach}"></Button>
+                                                <Button x:Name="Save" Click="Save_Click" Content="Сохранить" Style="{StaticResource Teach}" ></Button>
                                             </StackPanel>
                                         </StackPanel>
                                     </Grid>

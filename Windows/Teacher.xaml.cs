@@ -24,11 +24,15 @@ namespace Рисовалка.Windows
         {
             InitializeComponent();
             DrawList.ItemsSource = _context.UserImage.ToList();
+
+            
         }
 
-        private void Mark_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
-
+            //Mark
         }
+
+       
     }
 }

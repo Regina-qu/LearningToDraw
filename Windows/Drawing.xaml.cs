@@ -23,6 +23,7 @@ namespace Рисовалка.Windows
     {
         DRAWellEntities db = new DRAWellEntities();
         Users users = new Users();
+        UserImage userImage = new UserImage();
         private string[] imgs;
         int selected;
 
@@ -152,28 +153,96 @@ namespace Рисовалка.Windows
             this.InkCanvas.Strokes.Clear();
         }
 
+        int ImageUserID;
+        string ImageTitle;
+        string ImagePath;
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            InkCanvas.Background = Brushes.White;
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "savedimage";
-            dlg.DefaultExt = ".jpg";
-            dlg.Filter = "Image (.jpg)|*.jpg";
-            dlg.ShowDialog();
-            var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
-
-            InkCanvas.Measure(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight));
-            InkCanvas.Arrange(new Rect(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight)));
-            rtb.Render(InkCanvas);
-
-            PngBitmapEncoder BufferSave = new PngBitmapEncoder();
-            BufferSave.Frames.Add((BitmapFrame.Create(rtb)));
-            using (var fs = File.OpenWrite(dlg.FileName))
+            foreach (var user in db.Users)
             {
-                BufferSave.Save(fs);
+                if (user.Login == Global.log)
+                {
+                    InkCanvas.Background = Brushes.White;
+                    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                    dlg.FileName = "picture.png";
+                    dlg.DefaultExt = ".png";
+                    dlg.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG";
+                    
+                    bool? result = dlg.ShowDialog();
+
+                    string UserName = user.Name;
+                    string filename = dlg.FileName;
+
+                    ImageTitle = UserName + "_" + System.IO.Path.GetFileName(filename);
+                    ImagePath = "/Resources/UserImage/" + UserName + "_" + System.IO.Path.GetFileName(filename);
+
+                    var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+                    InkCanvas.Measure(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight));
+                    InkCanvas.Arrange(new Rect(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight)));
+                    rtb.Render(InkCanvas);
+
+                    PngBitmapEncoder BufferSave = new PngBitmapEncoder();
+                    BufferSave.Frames.Add((BitmapFrame.Create(rtb)));
+                    using (var fs = File.OpenWrite(dlg.FileName))
+                    {
+                        BufferSave.Save(fs);
+                    }
+                    try
+                    {
+                        File.Copy(filename, $"{projectDirectory}/Рисовалка/Resources/UserImage/{ImageTitle}");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                        return;
+                    }
+                    InkCanvas.Background = null;
+
+                    ImageUserID = user.ID;
+                    //userImage.Mark = null;
+                }
             }
-            InkCanvas.Background = null;
+            db.UserImage.Add(new UserImage()
+            {
+                UserID = ImageUserID,
+                Title = ImageTitle,
+                Path = ImagePath,
+                Created = DateTime.Now.Date,
+                Status = "Ждёт оценку"
+            });
+            db.SaveChanges();
         }
+
+        public static string workingDirectory = Environment.CurrentDirectory;
+        public static string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+        //private void Sending_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog()
+        //    {
+        //        DefaultExt = ".png",
+        //        FileName = "picture.png",
+        //        Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG",
+        //        InitialDirectory = projectDirectory + @"\Popryzhenok_Subbotina\agents\"
+        //    };
+        //    bool? result = openFileDialog.ShowDialog();
+
+        //    if (result == true)
+        //    {
+        //        string filename = openFileDialog.FileName;
+        //        string u = "/UserImage/Image" + System.IO.Path.GetFileName(filename);
+        //        //userImage.Path = "/Resources/UserImage" + System.IO.Path.GetFileName(filename);
+        //        try
+        //        {
+        //            File.Copy(filename, $"{projectDirectory}/Рисовалка/Resources{u}");
+        //            // TODO: RESCAN AGENTS FOLDER
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message.ToString());
+        //            return;
+        //        }
+        //    }
+        //}
 
         private void Size_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -240,6 +309,8 @@ namespace Рисовалка.Windows
             withoutLearning.Show();
             Hide();
         }
+
+        
 
         //UserImage userImage;
         //private void Sending_Click(object sender, RoutedEventArgs e)
