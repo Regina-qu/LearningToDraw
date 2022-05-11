@@ -27,7 +27,7 @@ namespace Рисовалка.Windows
             {
                 if (user.Login == Global.log)
                 {
-                    DrawList.ItemsSource = _context.UserImage.Where(b => b.UserID == user.ID).ToList();
+                    DrawList.ItemsSource = _context.UserImages.Where(b => b.UserID == user.ID).ToList();
                 }
             }
         }

@@ -12,14 +12,15 @@ namespace Рисовалка
     using System;
     using System.Collections.Generic;
     
-    public partial class UserImage
+    public partial class UserImages
     {
         public int ID { get; set; }
         public int UserID { get; set; }
-        public string Title { get; set; }
-        public string Path { get; set; }
+        public byte[] Image { get; set; }
         public System.DateTime Created { get; set; }
         public string Status { get; set; }
         public Nullable<int> Mark { get; set; }
+    
+        public virtual Users Users { get; set; }
     }
 }

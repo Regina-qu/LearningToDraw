@@ -17,7 +17,7 @@ namespace Рисовалка
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.UserImage = new HashSet<UserImage>();
+            this.UserImages = new HashSet<UserImages>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace Рисовалка
         public string Login { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserImage> UserImage { get; set; }
+        public virtual ICollection<UserImages> UserImages { get; set; }
     }
 }

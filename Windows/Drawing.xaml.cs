@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
 namespace Рисовалка.Windows
 {
     /// <summary>
@@ -22,8 +22,6 @@ namespace Рисовалка.Windows
     public partial class Drawing : Window
     {
         DRAWellEntities db = new DRAWellEntities();
-        Users users = new Users();
-        UserImage userImage = new UserImage();
         private string[] imgs;
         int selected;
 
@@ -154,8 +152,7 @@ namespace Рисовалка.Windows
         }
 
         int ImageUserID;
-        string ImageTitle;
-        string ImagePath;
+        string filename;
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             foreach (var user in db.Users)
@@ -163,18 +160,15 @@ namespace Рисовалка.Windows
                 if (user.Login == Global.log)
                 {
                     InkCanvas.Background = Brushes.White;
+
                     Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
                     dlg.FileName = "picture.png";
                     dlg.DefaultExt = ".png";
                     dlg.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG";
-                    
+
                     bool? result = dlg.ShowDialog();
 
-                    string UserName = user.Name;
-                    string filename = dlg.FileName;
-
-                    ImageTitle = UserName + "_" + System.IO.Path.GetFileName(filename);
-                    ImagePath = "/Resources/UserImage/" + UserName + "_" + System.IO.Path.GetFileName(filename);
+                    filename = dlg.FileName;
 
                     var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
                     InkCanvas.Measure(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight));
@@ -187,64 +181,64 @@ namespace Рисовалка.Windows
                     {
                         BufferSave.Save(fs);
                     }
-                    try
-                    {
-                        File.Copy(filename, $"{projectDirectory}/Рисовалка/Resources/UserImage/{ImageTitle}");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
-                        return;
-                    }
-                    InkCanvas.Background = null;
-
                     ImageUserID = user.ID;
-                    //userImage.Mark = null;
+
+                    InkCanvas.Background = null;
                 }
             }
-            db.UserImage.Add(new UserImage()
+            try
             {
-                UserID = ImageUserID,
-                Title = ImageTitle,
-                Path = ImagePath,
-                Created = DateTime.Now.Date,
-                Status = "Ждёт оценку"
-            });
-            db.SaveChanges();
+                byte[] buffer;
+                buffer = File.ReadAllBytes(filename);
+                db.UserImages.Add(new UserImages()
+                {
+                    UserID = ImageUserID,
+                    Image = buffer,
+                    Created = DateTime.Now.Date,
+                    Status = "Ждёт оценку"
+                });
+                db.SaveChanges();
+                MessageBox.Show("Ваше изображение сохранено и отправлено");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибка");
+            }
         }
 
-        public static string workingDirectory = Environment.CurrentDirectory;
-        public static string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
         //private void Sending_Click(object sender, RoutedEventArgs e)
         //{
-        //    Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog()
+        //    foreach (var user in db.Users)
         //    {
-        //        DefaultExt = ".png",
-        //        FileName = "picture.png",
-        //        Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG",
-        //        InitialDirectory = projectDirectory + @"\Popryzhenok_Subbotina\agents\"
-        //    };
-        //    bool? result = openFileDialog.ShowDialog();
+        //        if (user.Login == Global.log)
+        //        {
+        //            ImageUserID = user.ID;
+        //        }
+        //    }
 
-        //    if (result == true)
+        //    try
         //    {
-        //        string filename = openFileDialog.FileName;
-        //        string u = "/UserImage/Image" + System.IO.Path.GetFileName(filename);
-        //        //userImage.Path = "/Resources/UserImage" + System.IO.Path.GetFileName(filename);
-        //        try
+        //        MemoryStream memory = new MemoryStream();
+        //        InkCanvas.Strokes.Save(memory);
+        //        byte[] buffer = memory.ToArray();
+
+        //        db.UserImages.Add(new UserImages()
         //        {
-        //            File.Copy(filename, $"{projectDirectory}/Рисовалка/Resources{u}");
-        //            // TODO: RESCAN AGENTS FOLDER
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message.ToString());
-        //            return;
-        //        }
+        //            UserID = ImageUserID,
+        //            Image = buffer,
+        //            Created = DateTime.Now.Date,
+        //            Status = "Ждёт оценку"
+        //        });
+        //        db.SaveChanges();
+        //        MessageBox.Show("Ваше изображение сохранено и отправлено");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        MessageBox.Show("Ошибка");
         //    }
         //}
 
-        private void Size_MouseLeave(object sender, MouseEventArgs e)
+            private void Size_MouseLeave(object sender, MouseEventArgs e)
         {
             InkCanvas.DefaultDrawingAttributes.Height = Size.Value;
             InkCanvas.DefaultDrawingAttributes.Width = Size.Value;
@@ -309,77 +303,5 @@ namespace Рисовалка.Windows
             withoutLearning.Show();
             Hide();
         }
-
-        
-
-        //UserImage userImage;
-        //private void Sending_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-        //    dlg.InitialDirectory = "c:\\";
-        //    dlg.Filter = "Image files (*.jpg)|*.jpg|All Files (*.*)|*.*";
-        //    dlg.RestoreDirectory = true;
-
-        //    string appPath = Directory.GetCurrentDirectory();
-        //    string imageFolder = Directory.GetParent(appPath).Parent.FullName + "\\Images\\";
-        //    if (Directory.Exists(imageFolder) == false)
-        //    {
-        //        Directory.CreateDirectory(imageFolder);
-        //    }
-        //    Nullable<bool> result = dlg.ShowDialog();
-        //    if (result == true)
-        //    {
-        //        string selectedFileName = dlg.FileName;
-        //        string[] iName = dlg.SafeFileName.Split('.');
-        //        string extension = GetExtension(selectedFileName);
-        //        if (IsImageExtension(extension))
-        //        {
-        //            string newPath = imageFolder + iName[0];
-        //            CropImage(selectedFileName, newPath);
-        //            userImage.Path = newPath + "." + iName[1];
-        //            userImage.Data = ImageService.LoadImage(newPath + "." + iName[1]);
-        //            using (var context = new DRAWellEntities())
-        //            {
-        //                try
-        //                {
-        //                    var dbImages = context.UserImage.Where(i => i.UserId == user.Id);
-        //                    foreach (var image in dbImages)
-        //                    {
-        //                        images.Add(new ImageModel
-        //                        {
-        //                            Id = image.Id,
-        //                            Created = image.Created,
-        //                            Description = image.Description,
-        //                            Path = image.Path,
-        //                            Title = image.Title,
-        //                            UserId = image.UserId,
-        //                            Data = LoadImage(image.Path),
-        //                        });
-        //                    }
-        //                }
-        //                catch (Exception e)
-        //                {
-        //                    Trace.WriteLine(e.Message);
-        //                }
-
-        //                return images;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private string GetExtension(string path)
-        //{
-        //    return path.Split('.').Last();
-        //}
-        //private bool IsImageExtension(string ext)
-        //{
-        //    string[] _validExtensions = { "jpg", "bmp", "gif", "png" };
-        //    return _validExtensions.Contains(ext.ToLower());
-        //}
-        //private void CropImage(string source, string dest)
-        //{
-        //    ImageBuilder.Current.Build(new ImageJob(source, dest, new Instructions("width=274;height=143;format=jpg;"), false, true));
-        //}
     }
 }

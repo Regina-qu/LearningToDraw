@@ -39,6 +39,15 @@
         <Setter Property="FontSize" Value="16"/>
     </Style>
 
+    <Style TargetType="Button" x:Key="MarkButton">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="TBTeach">
         <Setter Property="Margin" Value="5"/>
         <Setter Property="FontSize" Value="16"/>
@@ -64,7 +73,11 @@
         <Setter Property="Foreground" Value="Gray"/>
     </Style>
 
-    
+    <Style TargetType="TextBlock" x:Key="Gal1">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
 
     <SolidColorBrush x:Key="GrayIcon" Color="Gray"/>
 

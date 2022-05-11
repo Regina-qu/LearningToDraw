@@ -41,18 +41,16 @@
                         <ListViewItem Width="450" >
                             <Grid Background="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
                                 <StackPanel HorizontalAlignment="Center">
-                                    <Image Source="{Binding Path}"></Image>
+                                    <Image Source="{Binding Image}" x:Name="Images"></Image>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Title}" ></TextBlock>
-                                        <TextBlock Text=" | " ></TextBlock>
-                                        <TextBlock Text="{Binding Created, StringFormat=\{0:dd.MM.yy\}}" ></TextBlock>
+                                        <TextBlock Text="{Binding Status}" Style="{StaticResource Gal}"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <TextBlock Text="{Binding Mark}"></TextBlock>
                                         <TextBlock Text="/5" ></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Status}" Style="{StaticResource Gal}"></TextBlock>
+                                        <TextBlock Text="{Binding Created, StringFormat=\{0:dd.MM.yy\}}" ></TextBlock>
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>

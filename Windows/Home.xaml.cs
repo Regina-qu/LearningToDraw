@@ -20,8 +20,6 @@ namespace Рисовалка.Windows
     /// </summary>
     public partial class Home : Window
     {
-        //private DRAWellEntities _context;
-
         public Home()
         {
             InitializeComponent();

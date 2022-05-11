@@ -36,19 +36,42 @@
                                             <RowDefinition Height="1*"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <StackPanel HorizontalAlignment="Center" >
-                                            <Image Source="{Binding Path}" Height="280"></Image>
+                                            <Image Source="{Binding Image}" x:Name="Images"></Image>
                                             <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
                                                 <TextBlock Text="{Binding Users.Name}" Style="{StaticResource TBTeach}"></TextBlock>
                                                 <TextBlock Text="|" Style="{StaticResource TBTeach}"></TextBlock>
                                                 <TextBlock Text="{Binding Created, StringFormat=\{0:dd.MM.yy\}}" Style="{StaticResource TBTeach}"></TextBlock>
                                             </StackPanel>
-                                            <WrapPanel HorizontalAlignment="Center">
-                                                <TextBlock Text="Оценка:" Style="{StaticResource TBTeach}"></TextBlock>
-                                                <TextBox Text="{Binding Mark}" Style="{StaticResource TBoxTeach}"></TextBox>
-                                            </WrapPanel>
-                                            <StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
-                                                <Button x:Name="Save" Click="Save_Click" Content="Сохранить" Style="{StaticResource Teach}" ></Button>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Status}" Style="{StaticResource Gal}"></TextBlock>
+                                                <TextBlock Text=": " Style="{StaticResource Gal}"></TextBlock>
+                                                <TextBlock Text="{Binding Mark}" Style="{StaticResource Gal}"></TextBlock>
+                                                <TextBlock Text="/5" Style="{StaticResource Gal}"></TextBlock>
                                             </StackPanel>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Background="#FFE8E8E8">
+                                                <TextBlock Text="Оценить/Изменить оценку:" Style="{StaticResource Gal1}"></TextBlock>
+                                            </StackPanel>
+                                            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" x:Name="Marks" Tag="{Binding Mark}">
+                                                <!--<TextBlock Text="Оценка:" Style="{StaticResource TBTeach}"></TextBlock>-->
+                                                <!--<TextBox Text="{Binding Mark}" Style="{StaticResource TBoxTeach}"></TextBox>-->
+                                                <!--<ComboBox>
+                                                    <ComboBoxItem Content="1" Tag="1"/>
+                                                    <ComboBoxItem Content="2" Tag="2"/>
+                                                    <ComboBoxItem Content="3" Tag="3"/>
+                                                    <ComboBoxItem Content="4" Tag="4"/>
+                                                    <ComboBoxItem Content="5" Tag="5"/>
+                                                </ComboBox>-->
+                                                
+                                                <Button x:Name="Mark1" Content="1" Style="{StaticResource MarkButton}" Click="Mark1_Click"></Button>
+                                                <Button x:Name="Mark2" Content="2" Style="{StaticResource MarkButton}" Click="Mark2_Click"></Button>
+                                                <Button x:Name="Mark3" Content="3" Style="{StaticResource MarkButton}" Click="Mark3_Click"></Button>
+                                                <Button x:Name="Mark4" Content="4" Style="{StaticResource MarkButton}" Click="Mark4_Click"></Button>
+                                                <Button x:Name="Mark5" Content="5" Style="{StaticResource MarkButton}" Click="Mark5_Click"></Button>
+                                            </WrapPanel>
+                                            <!--<StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
+                                                <Button x:Name="Save" Click="Save_Click" Content="Сохранить" Style="{StaticResource Teach}" ></Button>
+                                            </StackPanel>-->
+                                            
                                         </StackPanel>
                                     </Grid>
                                 </ListBoxItem>

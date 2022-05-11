@@ -89,6 +89,9 @@
     <Compile Include="UserImage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserImages.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -185,12 +188,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DRAWell.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DRAWell.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Cherry\Cherry1.png" />
     <Resource Include="Resources\Cherry\Cherry2.png" />
     <Resource Include="Resources\Cherry\Cherry3.png" />
@@ -250,6 +247,9 @@
     <Resource Include="Resources\gallery.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\send.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -260,9 +260,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\UserImage\Regina_1.png" />
-    <Resource Include="Resources\send.png" />
+    <Resource Include="Resources\DRAWell.ico" />
+    <Resource Include="Resources\DRAWell.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
