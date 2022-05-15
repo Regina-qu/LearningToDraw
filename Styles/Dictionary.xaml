@@ -79,6 +79,12 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
 
+    <Style TargetType="ComboBox">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+    </Style>
+
     <SolidColorBrush x:Key="GrayIcon" Color="Gray"/>
 
     <Geometry x:Key="SaveButtonIcon">F1 M 13,13L 35,13L 35,35L 29,35L 29,28L 19,28L 19,35L 13,35L 13,13 Z M 21,35L 21,32L 25,32L 25,35L 21,35 Z M 17,15L 17,21L 31,21L 31,15L 17,15 Z</Geometry>

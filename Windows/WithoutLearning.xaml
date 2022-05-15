@@ -20,7 +20,10 @@
         <WrapPanel Grid.Row="0" Grid.Column="0">
             <Image Source="/Resources/DRAWell.png"/>
         </WrapPanel>
-        <InkCanvas x:Name="InkCanvas" Grid.Row="1" Background="{x:Null}"/>
+        <Canvas Grid.Row="1" ClipToBounds="True">
+            <InkCanvas x:Name="InkCanvas" EditingMode="Select" Background="{x:Null}" Height="380" Width="650"/>
+        </Canvas>
+        <!--<InkCanvas x:Name="InkCanvas" Grid.Row="1" Background="{x:Null}"/>-->
         <WrapPanel Grid.Column="1" VerticalAlignment="Top"  Grid.Row="1">
             <Button x:Name="RedColor" Click="RedColor_Click" Background="Red" Height="50" Width="50"/>
             <Button x:Name="OrangeColor" Click="OrangeColor_Click" Background="Orange" Height="50" Width="50" Margin="15,0,0,0"/>
@@ -43,8 +46,11 @@
                 <Image Source="/Resources/home.jpg" />
             </Button>
         </WrapPanel>
-        <WrapPanel x:Name="WithoutLearn" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,30">
-            <Button x:Name="Save"  ToolTip="Сохранить шедевр" Click="Save_Click" Height="50"  Width="50"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="0">
+        <WrapPanel x:Name="WithoutLearn" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,30">
+            <Button x:Name="Sending" Click="Sending_Click" ToolTip="Отправить на проверку" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Image Source="/Resources/send.png" />
+            </Button>
+            <Button x:Name="Save" ToolTip="Сохранить шедевр" Click="Save_Click" Height="50"  Width="50"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="15,0,0,0">
                 <Path Stretch="Fill"
                   Data="{StaticResource SaveButtonIcon}"
                   Fill="{StaticResource GrayIcon}"
@@ -57,6 +63,11 @@
         </WrapPanel>
         <WrapPanel Grid.Row="3" HorizontalAlignment="Center">
             <Label Content="Теперь рисуйте самостоятельно!" FontStyle="Italic" FontSize="14"></Label>
+        </WrapPanel>
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Margin="25,0,0,0">
+            <Button x:Name="Backwards" Click="Backwards_Click" ToolTip="Назад" Height="50" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                <Image Source="/Resources/back.png" />
+            </Button>
         </WrapPanel>
     </Grid>
 </Window>

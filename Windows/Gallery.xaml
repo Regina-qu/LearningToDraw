@@ -27,37 +27,44 @@
             </Button>
         </WrapPanel>
         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="1">
-            <Label Content="Мои работы" FontSize="24"/>
+            <Label Content="Мои работы" FontSize="24"/> 
         </WrapPanel>
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Name="DrawList" Margin="10" Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="Gray"  BorderThickness="2">
-                        <ListViewItem Width="450" >
-                            <Grid Background="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Image Source="{Binding Image}" x:Name="Images"></Image>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Status}" Style="{StaticResource Gal}"></TextBlock>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <WrapPanel HorizontalAlignment="Center">
+                <ComboBox x:Name="CbSort" HorizontalAlignment="Center" Width="200" SelectionChanged="CbSort_SelectionChanged" Margin="-15,0,0,0"/>
+                <ComboBox x:Name="CbFilter" Width="200" Margin="15,0,0,0" SelectionChanged="CbFilter_SelectionChanged"/>
+            </WrapPanel>
+            <ListView Name="DrawList"  Background="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderBrush="{x:Null}" Height="440" Margin="0,10,0,0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray"  BorderThickness="2">
+                            <ListViewItem Width="450" >
+                                <Grid Background="White" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <Image Source="{Binding Image}" x:Name="Images"></Image>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Status}" Style="{StaticResource Gal}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Mark}"></TextBlock>
+                                            <TextBlock Text="/5" ></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Created, StringFormat=\{0:dd.MM.yy\}}" ></TextBlock>
+                                        </StackPanel>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Mark}"></TextBlock>
-                                        <TextBlock Text="/5" ></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding Created, StringFormat=\{0:dd.MM.yy\}}" ></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Grid>
-                        </ListViewItem>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                </Grid>
+                            </ListViewItem>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
     </Grid>
 </Window>

@@ -86,9 +86,6 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserImage.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserImages.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -250,6 +247,10 @@
     <Resource Include="Resources\send.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\DRAWell.ico" />
+    <Resource Include="Resources\DRAWell.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -260,8 +261,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\DRAWell.ico" />
-    <Resource Include="Resources\DRAWell.png" />
+    <Resource Include="Resources\back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

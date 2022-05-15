@@ -24,7 +24,38 @@ namespace Рисовалка.Windows
         public Teacher()
         {
             InitializeComponent();
-            DrawList.ItemsSource = db.UserImages.ToList();
+            DrawList.ItemsSource = db.UserImages.ToList(); CbFilter.Items.Add("Статус");
+            CbFilter.Items.Add("Оценено");
+            CbFilter.Items.Add("Ждёт оценку");
+            CbFilter.SelectedIndex = 0;
+
+            CbSort.Items.Add("Дата выполнения");
+            CbSort.Items.Add("Сначала новые");
+            CbSort.Items.Add("Сначала старые");
+            CbSort.SelectedIndex = 0;
+
+            GetImages();
+        }
+
+        private void GetImages()
+        {
+
+            List<UserImages> list = db.UserImages.ToList();
+            switch (CbSort.SelectedIndex)
+            {
+                case 0:; break;
+                case 1: list = list.OrderByDescending(x => x.Created).ToList(); break;
+                case 2: list = list.OrderBy(x => x.Created).ToList(); break;
+            }
+
+            switch (CbFilter.SelectedIndex)
+            {
+                case 0:; break;
+                case 1: list = list.Where(x => x.Status == "Оценено").ToList(); break;
+                case 2: list = list.Where(x => x.Status == "Ждёт оценку").ToList(); break;
+            }
+
+            DrawList.ItemsSource = list;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -96,6 +127,16 @@ namespace Рисовалка.Windows
                 db.SaveChanges();
                 DrawList.Items.Refresh();
             }
+        }
+
+        private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetImages();
+        }
+
+        private void CbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            GetImages();
         }
     }
 }

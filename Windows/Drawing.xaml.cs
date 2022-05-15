@@ -152,48 +152,56 @@ namespace Рисовалка.Windows
         }
 
         int ImageUserID;
-        string filename;
         private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            InkCanvas.Background = Brushes.White;
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "picture.png";
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG";
+            dlg.ShowDialog();
+
+            var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 95, 97, PixelFormats.Pbgra32);
+            rtb.Render(InkCanvas);
+
+            PngBitmapEncoder BufferSave = new PngBitmapEncoder();
+            BufferSave.Frames.Add((BitmapFrame.Create(rtb)));
+            using (var fs = File.OpenWrite(dlg.FileName))
+            {
+                BufferSave.Save(fs);
+            }
+            InkCanvas.Background = null;
+        }
+
+        private void Sending_Click(object sender, RoutedEventArgs e)
         {
             foreach (var user in db.Users)
             {
                 if (user.Login == Global.log)
                 {
-                    InkCanvas.Background = Brushes.White;
-
-                    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                    dlg.FileName = "picture.png";
-                    dlg.DefaultExt = ".png";
-                    dlg.Filter = "Image Files(*.BMP;*.JPG;*.PNG)|*.BMP;*.JPG;*.PNG";
-
-                    bool? result = dlg.ShowDialog();
-
-                    filename = dlg.FileName;
-
-                    var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
-                    InkCanvas.Measure(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight));
-                    InkCanvas.Arrange(new Rect(new Size((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight)));
-                    rtb.Render(InkCanvas);
-
-                    PngBitmapEncoder BufferSave = new PngBitmapEncoder();
-                    BufferSave.Frames.Add((BitmapFrame.Create(rtb)));
-                    using (var fs = File.OpenWrite(dlg.FileName))
-                    {
-                        BufferSave.Save(fs);
-                    }
                     ImageUserID = user.ID;
-
-                    InkCanvas.Background = null;
                 }
             }
             try
             {
-                byte[] buffer;
-                buffer = File.ReadAllBytes(filename);
+                MemoryStream memory = new MemoryStream();
+
+                var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 95d, 97d, PixelFormats.Pbgra32);
+                rtb.Render(InkCanvas);
+
+                BitmapEncoder pngEncoder = new PngBitmapEncoder();
+                pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
+
+                using (var fs = memory)
+                {
+                    pngEncoder.Save(fs);
+                }
+
+                byte[] arr = memory.ToArray();
                 db.UserImages.Add(new UserImages()
                 {
                     UserID = ImageUserID,
-                    Image = buffer,
+                    Image = arr,
                     Created = DateTime.Now.Date,
                     Status = "Ждёт оценку"
                 });
@@ -206,39 +214,7 @@ namespace Рисовалка.Windows
             }
         }
 
-        //private void Sending_Click(object sender, RoutedEventArgs e)
-        //{
-        //    foreach (var user in db.Users)
-        //    {
-        //        if (user.Login == Global.log)
-        //        {
-        //            ImageUserID = user.ID;
-        //        }
-        //    }
-
-        //    try
-        //    {
-        //        MemoryStream memory = new MemoryStream();
-        //        InkCanvas.Strokes.Save(memory);
-        //        byte[] buffer = memory.ToArray();
-
-        //        db.UserImages.Add(new UserImages()
-        //        {
-        //            UserID = ImageUserID,
-        //            Image = buffer,
-        //            Created = DateTime.Now.Date,
-        //            Status = "Ждёт оценку"
-        //        });
-        //        db.SaveChanges();
-        //        MessageBox.Show("Ваше изображение сохранено и отправлено");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        MessageBox.Show("Ошибка");
-        //    }
-        //}
-
-            private void Size_MouseLeave(object sender, MouseEventArgs e)
+        private void Size_MouseLeave(object sender, MouseEventArgs e)
         {
             InkCanvas.DefaultDrawingAttributes.Height = Size.Value;
             InkCanvas.DefaultDrawingAttributes.Width = Size.Value;
