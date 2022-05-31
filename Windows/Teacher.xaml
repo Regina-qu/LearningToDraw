@@ -64,10 +64,6 @@
                                                     <Button x:Name="Mark4" Content="4" Style="{StaticResource MarkButton}" Click="Mark4_Click"></Button>
                                                     <Button x:Name="Mark5" Content="5" Style="{StaticResource MarkButton}" Click="Mark5_Click"></Button>
                                                 </WrapPanel>
-                                                <!--<StackPanel VerticalAlignment="Center" Grid.Row="2" Grid.Column="1">
-                                                <Button x:Name="Save" Click="Save_Click" Content="Сохранить" Style="{StaticResource Teach}" ></Button>
-                                            </StackPanel>-->
-
                                             </StackPanel>
                                         </Grid>
                                     </ListBoxItem>

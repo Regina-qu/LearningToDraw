@@ -7,15 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Рисовалка
+namespace Рисовалка.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class UserImages
     {
         public int ID { get; set; }
-        public string Login { get; set; }
-        public string Pass { get; set; }
+        public int UserID { get; set; }
+        public byte[] Image { get; set; }
+        public System.DateTime Created { get; set; }
+        public string Status { get; set; }
+        public Nullable<int> Mark { get; set; }
+    
+        public virtual Users Users { get; set; }
     }
 }

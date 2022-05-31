@@ -88,10 +88,5 @@ namespace Рисовалка.Windows
             gallery.Show();
             Hide();
         }
-
-        //private void Login_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    Login.Content = "Добро пожаловать, " + Global.log;
-        //}
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Рисовалка.Model;
 
 namespace Рисовалка.Windows
 {
@@ -175,42 +176,46 @@ namespace Рисовалка.Windows
 
         private void Sending_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var user in db.Users)
+            var res = MessageBox.Show("Хотите отправить работу на проверку?", "Отправка на проверку", MessageBoxButton.OKCancel);
+            if (res == MessageBoxResult.OK)
             {
-                if (user.Login == Global.log)
+                foreach (var user in db.Users)
                 {
-                    ImageUserID = user.ID;
+                    if (user.Login == Global.log)
+                    {
+                        ImageUserID = user.ID;
+                    }
                 }
-            }
-            try
-            {
-                MemoryStream memory = new MemoryStream();
-
-                var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 95d, 97d, PixelFormats.Pbgra32);
-                rtb.Render(InkCanvas);
-
-                BitmapEncoder pngEncoder = new PngBitmapEncoder();
-                pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
-
-                using (var fs = memory)
+                try
                 {
-                    pngEncoder.Save(fs);
+                    MemoryStream memory = new MemoryStream();
+
+                    var rtb = new RenderTargetBitmap((int)this.InkCanvas.ActualWidth, (int)this.InkCanvas.ActualHeight, 95d, 97d, PixelFormats.Pbgra32);
+                    rtb.Render(InkCanvas);
+
+                    BitmapEncoder pngEncoder = new PngBitmapEncoder();
+                    pngEncoder.Frames.Add(BitmapFrame.Create(rtb));
+
+                    using (var fs = memory)
+                    {
+                        pngEncoder.Save(fs);
+                    }
+
+                    byte[] arr = memory.ToArray();
+                    db.UserImages.Add(new UserImages()
+                    {
+                        UserID = ImageUserID,
+                        Image = arr,
+                        Created = DateTime.Now.Date,
+                        Status = "Ждёт оценку"
+                    });
+                    db.SaveChanges();
+                    MessageBox.Show("Ваше изображение отправлено");
                 }
-
-                byte[] arr = memory.ToArray();
-                db.UserImages.Add(new UserImages()
+                catch (Exception)
                 {
-                    UserID = ImageUserID,
-                    Image = arr,
-                    Created = DateTime.Now.Date,
-                    Status = "Ждёт оценку"
-                });
-                db.SaveChanges();
-                MessageBox.Show("Ваше изображение сохранено и отправлено");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Ошибка");
+                    MessageBox.Show("Ошибка");
+                }
             }
         }
 

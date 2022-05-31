@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Рисовалка.Model;
 
 namespace Рисовалка.Windows
 {
@@ -56,12 +57,6 @@ namespace Рисовалка.Windows
             }
 
             DrawList.ItemsSource = list;
-        }
-
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            //object tag = ((Button)e.OriginalSource).Tag;
-            //MessageBox.Show((string)tag);
         }
 
         private void Mark1_Click(object sender, RoutedEventArgs e)

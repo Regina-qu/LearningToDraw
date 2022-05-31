@@ -7,17 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Рисовалка
+namespace Рисовалка.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Images
+    public partial class Teacher
     {
         public int ID { get; set; }
-        public int IDImagesType { get; set; }
-        public string ImagePath { get; set; }
-    
-        public virtual ImageType ImageType { get; set; }
+        public string Login { get; set; }
+        public string Pass { get; set; }
     }
 }

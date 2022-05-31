@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Рисовалка
+namespace Рисовалка.Model
 {
     using System;
     using System.Data.Entity;

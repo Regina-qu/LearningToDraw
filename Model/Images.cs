@@ -7,25 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Рисовалка
+namespace Рисовалка.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ImageType
+    public partial class Images
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ImageType()
-        {
-            this.Images = new HashSet<Images>();
-        }
-    
         public int ID { get; set; }
-        public string ImageType1 { get; set; }
-        public string Description { get; set; }
-        public string MainImage { get; set; }
+        public int IDImagesType { get; set; }
+        public string ImagePath { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Images> Images { get; set; }
+        public virtual ImageType ImageType { get; set; }
     }
 }
